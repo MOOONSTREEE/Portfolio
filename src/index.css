@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Tokens exposés aussi en CSS (utiles hors classes Tailwind). */
+    --color-base: #0a0e14;
+    --color-surface: #121822;
+    --color-cyan: #22d3ee;
+    --color-emerald: #34d399;
+    --color-ink: #e5e7eb;
+    --color-muted: #94a3b8;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* compense le header sticky lors des sauts d'ancre */
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-base text-ink font-body antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Focus clavier visible et cohérent (accessibilité). */
+  :focus-visible {
+    @apply outline-none ring-2 ring-cyan/70 ring-offset-2 ring-offset-base rounded-sm;
+  }
+
+  ::selection {
+    background: rgba(34, 211, 238, 0.25);
+    color: #fff;
+  }
+
+  /* Barre de défilement discrète, dans le thème. */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0e14;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1e2a3a;
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2a3a52;
+  }
+}
+
+@layer components {
+  /* Carte « surface » glassmorphism léger réutilisable. */
+  .surface-card {
+    @apply rounded-xl border border-line bg-surface/70 backdrop-blur-sm shadow-card;
+  }
+
+  /* Étiquette terminal monospace (eyebrow de section). */
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.2em] text-cyan;
+  }
+}
+
+/* Coupe les animations si l'utilisateur le demande. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
