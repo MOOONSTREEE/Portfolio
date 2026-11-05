@@ -99,7 +99,7 @@ Ajouter un objet dans `src/data/internships.ts` ou `src/data/education.ts`.
 - **SAÉ de 3ᵉ année** : à ajouter dans `saes.ts` au fil de l'année.
 - **Stage 3ᵉ** : nom de l'entreprise de drones aquatiques + année.
 - **Baccalauréat** : année exacte.
-- **CV** : remplacer `public/cv.pdf` (placeholder) par le vrai CV.
+- **CV** : `public/cv.pdf` (FR) et `public/cv-en.pdf` (EN) à régénérer en cas de changement.
 - **Décision** : afficher ou non les années de formation (retirer `period` dans `education.ts`).
 
 ---

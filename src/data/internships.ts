@@ -9,8 +9,9 @@ export const internships: Internship[] = [
     period: 'Depuis septembre 2026',
     duration: "Contrat d'apprentissage · 3ᵉ année",
     missions: [
-      "Alternance école / entreprise dans le cadre de la 3ᵉ année de BUT R&T.",
-      // [À COMPLÉTER — 2 à 4 missions concrètes]
+      "Exploitation et maintien en conditions opérationnelles du réseau des sites de l'agglomération (écoles, bâtiments publics).",
+      "Supervision et diagnostic d'incidents via UniFi et PRTG, par exemple des pertes de liaison fibre / SFP et l'analyse de leurs causes.",
+      'Participation aux projets de renouvellement des équipements réseau (switchs, liaisons fibre).',
     ],
   },
   {
@@ -21,8 +22,10 @@ export const internships: Internship[] = [
     period: '2ᵉ année', // [À VALIDER] dates exactes
     duration: '2 mois',
     missions: [
-      // [À COMPLÉTER — 2 à 4 points]
-      'Mission à compléter',
+      'Remplacement des commutateurs Cisco dans environ 18 écoles : préparation, configuration et mise en service sur site.',
+      "Déploiement de switchs UniFi Pro PoE sur des sites publics de l'agglomération.",
+      'Migration de liaisons fibre multimode vers de la fibre monomode.',
+      'Supervision du parc réseau avec PRTG et le contrôleur UniFi.',
     ],
     links: [
       // { label: 'Poster de stage', href: '#', kind: 'poster' },

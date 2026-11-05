@@ -29,4 +29,5 @@ export const profile: Profile = {
   },
   // BASE_URL vaut '/Portfolio/' en production (GitHub Pages) et '/' en dev.
   cvUrl: `${import.meta.env.BASE_URL}cv.pdf`,
+  cvUrlEn: `${import.meta.env.BASE_URL}cv-en.pdf`,
 };

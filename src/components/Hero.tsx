@@ -64,8 +64,19 @@ export function Hero() {
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-lg border border-line px-5 py-3 text-sm font-medium text-ink transition-colors hover:border-cyan/60 hover:text-cyan"
           >
-            <Download size={16} /> Télécharger mon CV
+            <Download size={16} /> CV (FR)
           </a>
+          {profile.cvUrlEn && (
+            <a
+              href={profile.cvUrlEn}
+              target="_blank"
+              rel="noreferrer"
+              lang="en"
+              className="inline-flex items-center gap-2 rounded-lg border border-line px-5 py-3 text-sm font-medium text-ink transition-colors hover:border-cyan/60 hover:text-cyan"
+            >
+              <Download size={16} /> Resume (EN)
+            </a>
+          )}
         </motion.div>
 
         {/* Liens rapides */}

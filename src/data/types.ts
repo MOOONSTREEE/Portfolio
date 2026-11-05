@@ -30,6 +30,7 @@ export interface Profile {
   softSkills: string[];
   links: { github: string; linkedin: string; email: string };
   cvUrl: string; // ex : `${import.meta.env.BASE_URL}cv.pdf`
+  cvUrlEn?: string; // version anglaise du CV (bouton masqué si absent)
 }
 
 export interface EducationItem {
