@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { getSaeById, getSkill, visibleProjects } from '@/data';
 import type { SkillId } from '@/data/types';
 import { useActiveSection } from '@/hooks/useActiveSection';
+import { useReadingMode } from '@/lib/readingMode';
 import { Header, type NavItem } from '@/components/Header';
 import { Hero } from '@/components/Hero';
 import { About } from '@/components/About';
@@ -29,19 +30,21 @@ export default function App() {
     setOpenSaeId(id);
   };
 
+  const { isSimple } = useReadingMode();
+
   // Navigation dérivée des sections réellement affichées.
   const navItems = useMemo<NavItem[]>(() => {
     const items: NavItem[] = [
       { id: 'a-propos', label: 'À propos' },
       { id: 'formation', label: 'Formation' },
       { id: 'competences', label: 'Compétences' },
-      { id: 'saes', label: 'SAÉ' },
+      { id: 'saes', label: isSimple ? 'Projets d’études' : 'SAÉ' },
     ];
-    if (visibleProjects().length > 0) items.push({ id: 'projets', label: 'Projets' });
+    if (visibleProjects().length > 0) items.push({ id: 'projets', label: isSimple ? 'Projets perso' : 'Projets' });
     items.push({ id: 'stages', label: 'Alternance' });
     items.push({ id: 'contact', label: 'Contact' });
     return items;
-  }, []);
+  }, [isSimple]);
 
   const sectionIds = useMemo(() => navItems.map((i) => i.id), [navItems]);
   const active = useActiveSection(sectionIds);

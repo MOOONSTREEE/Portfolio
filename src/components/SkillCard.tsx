@@ -3,6 +3,7 @@ import { ArrowUpRight, ShieldCheck } from 'lucide-react';
 import type { Skill } from '@/data/types';
 import { LEVEL_LABEL } from '@/lib/ui';
 import { StatusPill } from './StatusPill';
+import { useReadingMode } from '@/lib/readingMode';
 
 interface SkillCardProps {
   skill: Skill;
@@ -10,7 +11,9 @@ interface SkillCardProps {
 }
 
 export function SkillCard({ skill, onOpen }: SkillCardProps) {
+  const { pick, isSimple } = useReadingMode();
   const acCount = skill.apprentissagesCritiques?.length ?? 0;
+  const exCount = skill.simple?.examples?.length ?? 0;
 
   return (
     <button
@@ -21,7 +24,7 @@ export function SkillCard({ skill, onOpen }: SkillCardProps) {
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-2">
-          <span className="font-mono text-sm font-bold text-cyan">[{skill.id}]</span>
+          {!isSimple && <span className="font-mono text-sm font-bold text-cyan">[{skill.id}]</span>}
           {skill.track === 'cyber' && (
             <ShieldCheck size={15} className="text-emerald" aria-label="Parcours Cybersécurité" />
           )}
@@ -30,16 +33,16 @@ export function SkillCard({ skill, onOpen }: SkillCardProps) {
       </div>
 
       <h3 className="mt-3 font-display text-base font-semibold leading-snug text-ink transition-colors group-hover:text-cyan">
-        {skill.label}
+        {pick(skill.label, skill.simple?.label)}
       </h3>
 
-      <p className="mt-2 flex-1 text-sm text-muted">{skill.description}</p>
+      <p className="mt-2 flex-1 text-sm text-muted">{pick(skill.description, skill.simple?.description)}</p>
 
       {/* Jauge de niveau */}
       <div className="mt-4">
         <div className="mb-1.5 flex items-center justify-between text-xs">
           <span className="font-mono text-faint">{LEVEL_LABEL[skill.level]}</span>
-          <span className="font-mono text-muted">{skill.levelPercent}%</span>
+          {!isSimple && <span className="font-mono text-muted">{skill.levelPercent}%</span>}
         </div>
         <div className="h-1.5 overflow-hidden rounded-full bg-surface-2">
           <motion.div
@@ -53,7 +56,13 @@ export function SkillCard({ skill, onOpen }: SkillCardProps) {
       </div>
 
       <span className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-cyan opacity-0 transition-opacity group-hover:opacity-100">
-        {acCount > 0 ? `${acCount} apprentissages critiques` : 'Voir le détail'}
+        {isSimple
+          ? exCount > 0
+            ? 'Voir des exemples concrets'
+            : 'Voir le détail'
+          : acCount > 0
+            ? `${acCount} apprentissages critiques`
+            : 'Voir le détail'}
         <ArrowUpRight size={13} />
       </span>
     </button>

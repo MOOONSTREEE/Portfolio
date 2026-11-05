@@ -30,4 +30,20 @@ export const profile: Profile = {
   // BASE_URL vaut '/Portfolio/' en production (GitHub Pages) et '/' en dev.
   cvUrl: `${import.meta.env.BASE_URL}cv.pdf`,
   cvUrlEn: `${import.meta.env.BASE_URL}cv-en.pdf`,
+
+  // Vue simplifiée (RH / non-informaticiens)
+  simple: {
+    title: 'Étudiant en alternance — informatique, réseaux et cybersécurité',
+    tagline:
+      'Je fais fonctionner les réseaux informatiques des organisations et je les protège contre les attaques.',
+    about:
+      "Je suis Noé Coëffic, en 3ᵉ et dernière année d'un BUT Réseaux & Télécommunications (diplôme Bac+3) " +
+      "à l'IUT de Colmar, avec une spécialité en cybersécurité. Je suis cette année en alternance chez " +
+      "Mulhouse Alsace Agglomération (m2A) : je partage mon temps entre l'IUT et le service informatique, " +
+      "où je m'occupe du réseau qui relie les écoles et les bâtiments publics de l'agglomération. Mon métier, " +
+      "c'est de faire en sorte que les ordinateurs, Internet et les outils numériques fonctionnent sans " +
+      "interruption, et de les protéger contre le piratage. En dehors des cours, je pratique la musculation " +
+      "et les jeux vidéo, qui me demandent de la régularité, de la persévérance et de la stratégie. Mon " +
+      "objectif : travailler dans la cybersécurité ou l'administration des réseaux.",
+  },
 };

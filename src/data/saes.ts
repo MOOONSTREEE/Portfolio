@@ -37,6 +37,23 @@ export const saes: Sae[] = [
       'Haute disponibilité des services via HAProxy',
       'Domaine interne sae8.internal',
     ],
+    simple: {
+      title: 'Construire et protéger le réseau d’une entreprise fictive',
+      summary:
+        'Création complète du système informatique d’une entreprise sur des serveurs virtuels, ' +
+        'en le protégeant contre les intrusions et les pannes.',
+      description:
+        'Projet d’équipe : nous avons recréé de A à Z le système informatique d’une entreprise, sur des ' +
+        'machines virtuelles. Le réseau est découpé en zones (une partie accessible depuis Internet, une ' +
+        'partie interne protégée), un pare-feu filtre ce qui peut passer de l’une à l’autre, chaque ' +
+        'utilisateur a un compte sécurisé, et les services restent disponibles même si un serveur tombe.',
+      highlights: [
+        'Réseau découpé en zones pour limiter les dégâts en cas d’attaque',
+        'Pare-feu qui filtre les connexions entre les zones',
+        'Gestion centralisée des comptes et des certificats de sécurité',
+        'Services qui continuent de fonctionner même en cas de panne d’un serveur',
+      ],
+    },
     skills: ['RT4', 'RT1', 'RT3', 'RT5'],
     tools: ['Proxmox', 'nftables', 'LDAP', 'PKI', 'HAProxy', 'Linux'],
     status: 'acquis',
@@ -61,6 +78,21 @@ export const saes: Sae[] = [
       'Architecture distribuée (réseau de relais)',
       'Anonymisation et confidentialité des communications',
     ],
+    simple: {
+      title: 'Concevoir un système de communication anonyme',
+      summary:
+        'Conception d’un réseau qui fait passer les messages par plusieurs relais chiffrés, ' +
+        'sur le principe du navigateur Tor, pour protéger l’anonymat.',
+      description:
+        'Chaque message est protégé par plusieurs couches de chiffrement, comme un oignon, puis transmis ' +
+        'de relais en relais. Chaque relais ne retire qu’une couche et ne connaît jamais le trajet complet : ' +
+        'personne ne peut savoir à la fois qui envoie le message et à qui il est destiné.',
+      highlights: [
+        'Messages protégés par plusieurs couches de chiffrement',
+        'Réseau de relais répartis',
+        'Confidentialité et anonymat des échanges',
+      ],
+    },
     skills: ['RT5', 'RT3', 'RT1'],
     tools: ['Routage en oignon', 'Cryptographie', 'Architecture distribuée', 'Réseau'],
     status: 'acquis',
@@ -84,6 +116,17 @@ export const saes: Sae[] = [
       'Vidéo de sensibilisation — sujet Red Team (2024-2025)',
       "Vulgarisation des bonnes pratiques d'hygiène informatique",
     ],
+    simple: {
+      title: 'Sensibiliser aux bons réflexes de cybersécurité',
+      summary:
+        'Réalisation de vidéos pour expliquer au grand public les risques numériques : ' +
+        'l’intelligence artificielle, puis les techniques des pirates.',
+      highlights: [
+        'Vidéo de sensibilisation sur l’intelligence artificielle (2023-2024)',
+        'Vidéo sur les techniques d’attaque et les bons réflexes (2024-2025)',
+        'Vulgarisation des bonnes pratiques numériques',
+      ],
+    },
     skills: ['RT1'],
     tools: ['Cybersécurité', 'Sensibilisation', 'Montage vidéo'],
     status: 'acquis',
@@ -109,6 +152,19 @@ export const saes: Sae[] = [
       'Configuration de commutateurs et routeurs',
       'Mise en place et test de topologies locales',
     ],
+    simple: {
+      title: 'Découvrir les réseaux informatiques',
+      summary:
+        'Premiers pas : relier des ordinateurs entre eux, leur donner une adresse et vérifier qu’ils communiquent.',
+      description:
+        'Installation d’un petit réseau local : attribution d’une adresse à chaque appareil, réglage du ' +
+        'matériel qui relie les ordinateurs, puis vérification que tout le monde communique correctement.',
+      highlights: [
+        'Organisation des adresses du réseau',
+        'Réglage du matériel réseau',
+        'Tests de bon fonctionnement',
+      ],
+    },
     skills: ['RT1'],
     tools: ['Cisco', 'IP', 'Réseaux locaux'],
     status: 'acquis',
@@ -133,6 +189,20 @@ export const saes: Sae[] = [
       'Heatmaps de couverture WiFi 2,4 / 5 GHz (bâtiment C)',
       'Analyse des canaux et détection des zones mal couvertes',
     ],
+    simple: {
+      title: 'Câbler un bâtiment et mesurer son Wi-Fi',
+      summary:
+        'Fabrication et test de câbles réseau, et cartographie de la qualité du Wi-Fi dans un bâtiment de l’IUT.',
+      description:
+        'Deux volets. D’abord le câblage : fabrication, branchement et test de câbles réseau. Ensuite le ' +
+        'Wi-Fi : mesure de la qualité du signal pièce par pièce sur deux étages, pour repérer les zones mal ' +
+        'couvertes (couloirs, escaliers) et proposer des améliorations.',
+      highlights: [
+        'Fabrication et test de câbles réseau',
+        'Carte de la qualité du Wi-Fi sur deux étages',
+        'Repérage des zones mal couvertes et recommandations',
+      ],
+    },
     skills: ['RT2'],
     tools: ['RJ45 Cat 6A', 'Panneau de brassage', 'WiFi 2.4/5 GHz', 'Heatmap'],
     status: 'acquis',
@@ -155,6 +225,11 @@ export const saes: Sae[] = [
       'structuration du contenu et déploiement — une première approche du développement front-end, ' +
       'prolongée aujourd\'hui par ce portfolio.',
     highlights: ['Initiation HTML / CSS', 'Structuration de contenu web', 'Publication en ligne'],
+    simple: {
+      title: 'Créer mon premier site web',
+      summary: 'Création et mise en ligne d’un site personnel, première étape vers ce portfolio.',
+      highlights: ['Création des pages du site', 'Organisation du contenu', 'Mise en ligne'],
+    },
     skills: ['RT3'],
     tools: ['HTML', 'CSS', 'Web'],
     status: 'acquis',
@@ -184,6 +259,23 @@ export const saes: Sae[] = [
       "Génération automatique d'un script PowerShell de suppression",
       "Analyse d'une attaque de l'homme du milieu (MITM)",
     ],
+    simple: {
+      title: 'Créer un outil pour faire le ménage dans ses fichiers',
+      summary:
+        'Programme qui repère les fichiers les plus volumineux, les affiche dans un graphique et aide à ' +
+        'les supprimer, ainsi que l’étude d’une technique d’espionnage des communications.',
+      description:
+        'Projet en binôme. Nous avons programmé un outil qui parcourt un dossier, classe les fichiers par ' +
+        'taille, affiche leur répartition dans un graphique et permet de choisir ceux à supprimer en toute ' +
+        'sécurité. Un second volet portait sur une attaque où un pirate s’intercale entre deux personnes ' +
+        'pour lire leurs échanges.',
+      highlights: [
+        'Analyse et tri automatique des fichiers',
+        'Interface graphique avec un graphique de répartition',
+        'Suppression sécurisée des fichiers choisis',
+        'Étude d’une attaque d’interception des communications',
+      ],
+    },
     skills: ['RT3'],
     tools: ['Python', 'PyQt5', 'PyQtChart', 'JSON', 'PowerShell'],
     status: 'acquis',

@@ -5,6 +5,7 @@ import type { Sae } from '@/data/types';
 import { getSkill } from '@/data';
 import { SkillBadge } from './SkillBadge';
 import { StatusPill } from './StatusPill';
+import { useReadingMode } from '@/lib/readingMode';
 
 interface SaeDetailProps {
   sae: Sae | null;
@@ -12,6 +13,7 @@ interface SaeDetailProps {
 }
 
 export function SaeDetail({ sae, onClose }: SaeDetailProps) {
+  const { pick, isSimple } = useReadingMode();
   const closeRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -65,7 +67,7 @@ export function SaeDetail({ sae, onClose }: SaeDetailProps) {
             </button>
 
             <div className="flex flex-wrap items-center gap-3 pr-8">
-              {sae.code && (
+              {!isSimple && sae.code && (
                 <span className="font-mono text-xs text-cyan">{sae.code}</span>
               )}
               <StatusPill status={sae.status} />
@@ -78,28 +80,33 @@ export function SaeDetail({ sae, onClose }: SaeDetailProps) {
               id="sae-title"
               className="mt-3 font-display text-2xl font-semibold text-ink"
             >
-              {sae.title}
+              {pick(sae.title, sae.simple?.title)}
             </h2>
 
             <p className="mt-3 leading-relaxed text-muted">
-              {sae.description ?? sae.summary}
+              {isSimple
+                ? sae.simple?.description ?? sae.simple?.summary ?? sae.description ?? sae.summary
+                : sae.description ?? sae.summary}
             </p>
 
-            {sae.highlights && sae.highlights.length > 0 && (
+            {(() => {
+              const highlights = pick(sae.highlights, sae.simple?.highlights);
+              return highlights && highlights.length > 0 ? (
               <ul className="mt-5 space-y-2">
-                {sae.highlights.map((h) => (
+                {highlights.map((h) => (
                   <li key={h} className="flex gap-2.5 text-sm text-ink">
                     <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald" />
                     {h}
                   </li>
                 ))}
               </ul>
-            )}
+              ) : null;
+            })()}
 
-            <div className="mt-6 grid gap-5 sm:grid-cols-2">
+            <div className={isSimple ? 'mt-6' : 'mt-6 grid gap-5 sm:grid-cols-2'}>
               <div>
                 <p className="mb-2 font-mono text-[10px] uppercase tracking-wider text-faint">
-                  Compétences
+                  {isSimple ? 'Savoir-faire mobilisés' : 'Compétences'}
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {sae.skills.map((id) => (
@@ -107,6 +114,7 @@ export function SaeDetail({ sae, onClose }: SaeDetailProps) {
                   ))}
                 </div>
               </div>
+              {!isSimple && (
               <div>
                 <p className="mb-2 font-mono text-[10px] uppercase tracking-wider text-faint">
                   Outils
@@ -122,10 +130,11 @@ export function SaeDetail({ sae, onClose }: SaeDetailProps) {
                   ))}
                 </div>
               </div>
+              )}
             </div>
 
             {/* Apprentissages critiques des compétences mobilisées (repliable) */}
-            {sae.skills.length > 0 && (
+            {!isSimple && sae.skills.length > 0 && (
               <div className="mt-6 border-t border-line/60 pt-5">
                 <p className="mb-2 font-mono text-[10px] uppercase tracking-wider text-faint">
                   Apprentissages critiques mobilisés

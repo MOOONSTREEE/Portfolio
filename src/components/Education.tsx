@@ -1,8 +1,11 @@
 import { motion } from 'framer-motion';
 import { education } from '@/data';
+import { useReadingMode } from '@/lib/readingMode';
 import { Section } from './Section';
 
 export function Education() {
+  const { pick } = useReadingMode();
+
   return (
     <Section id="formation" eyebrow="~/formation" title="Formation">
       <ol className="relative ml-3 border-l border-line">
@@ -23,15 +26,19 @@ export function Education() {
               aria-hidden="true"
             />
             <div className="flex flex-wrap items-baseline gap-x-3">
-              <h3 className="font-display text-lg font-semibold text-ink">{item.title}</h3>
+              <h3 className="font-display text-lg font-semibold text-ink">{pick(item.title, item.simple?.title)}</h3>
               {item.period && (
                 <span className="font-mono text-xs text-cyan">{item.period}</span>
               )}
             </div>
             <p className="mt-1 text-sm text-muted">{item.institution}</p>
-            {item.track && <p className="mt-1 text-sm text-emerald">{item.track}</p>}
+            {item.track && (
+              <p className="mt-1 text-sm text-emerald">{pick(item.track, item.simple?.track)}</p>
+            )}
             {item.description && (
-              <p className="mt-2 text-sm text-faint">{item.description}</p>
+              <p className="mt-2 text-sm text-faint">
+                {pick(item.description, item.simple?.description)}
+              </p>
             )}
           </motion.li>
         ))}

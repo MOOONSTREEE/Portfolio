@@ -15,6 +15,12 @@ export const projects: Project[] = [
     skills: ['RT5'],
     tools: ['RootMe', 'Web', 'Cryptographie', 'Réseau'],
     status: 'en-cours',
+    simple: {
+      title: 'Entraînement à la cybersécurité (RootMe)',
+      summary:
+        'Je relève régulièrement des défis en ligne qui consistent à trouver des failles de sécurité, ' +
+        'dans un cadre légal, pour mieux comprendre comment s’en protéger.',
+    },
     links: [
       // Renseigner l'URL du profil RootMe puis dé-commenter :
       // { label: 'Profil RootMe', href: 'https://www.root-me.org/...', kind: 'other' },

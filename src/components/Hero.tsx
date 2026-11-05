@@ -1,10 +1,13 @@
 import { motion } from 'framer-motion';
-import { ArrowDown, Download, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowDown, Code2, Download, Github, Linkedin, Mail, Users } from 'lucide-react';
 import { profile } from '@/data';
+import { useReadingMode } from '@/lib/readingMode';
 import { HeroBackground } from './Background';
 import { Typewriter } from './Typewriter';
 
 export function Hero() {
+  const { pick, isSimple, toggle } = useReadingMode();
+
   return (
     <section
       id="hero"
@@ -34,7 +37,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-5 max-w-2xl font-mono text-sm text-cyan sm:text-base"
         >
-          {profile.title}
+          {pick(profile.title, profile.simple?.title)}
         </motion.p>
 
         <motion.p
@@ -43,7 +46,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.45 }}
           className="mt-6 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl"
         >
-          {profile.tagline}
+          {pick(profile.tagline, profile.simple?.tagline)}
         </motion.p>
 
         <motion.div
@@ -78,6 +81,28 @@ export function Hero() {
             </a>
           )}
         </motion.div>
+
+        {/* Invitation à changer de vue, visible dès l'arrivée */}
+        <motion.button
+          type="button"
+          onClick={toggle}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
+          className="mt-6 inline-flex items-center gap-2 text-left text-sm text-muted underline-offset-4 transition-colors hover:text-cyan hover:underline"
+        >
+          {isSimple ? (
+            <>
+              <Code2 size={15} className="shrink-0 text-cyan" />
+              Vous êtes du métier ? Passer à la vue technique
+            </>
+          ) : (
+            <>
+              <Users size={15} className="shrink-0 text-cyan" />
+              Vous n’êtes pas informaticien·ne ? Passer à la vue simplifiée
+            </>
+          )}
+        </motion.button>
 
         {/* Liens rapides */}
         <motion.div

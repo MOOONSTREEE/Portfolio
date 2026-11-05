@@ -5,6 +5,7 @@ import type { Skill } from '@/data/types';
 import { getSaeById } from '@/data';
 import { LEVEL_LABEL } from '@/lib/ui';
 import { StatusPill } from './StatusPill';
+import { useReadingMode } from '@/lib/readingMode';
 
 interface SkillDetailProps {
   skill: Skill | null;
@@ -13,6 +14,7 @@ interface SkillDetailProps {
 }
 
 export function SkillDetail({ skill, onClose, onOpenSae }: SkillDetailProps) {
+  const { pick, isSimple } = useReadingMode();
   const closeRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -72,26 +74,28 @@ export function SkillDetail({ skill, onClose, onOpenSae }: SkillDetailProps) {
             </button>
 
             <div className="flex flex-wrap items-center gap-3 pr-8">
-              <span className="font-mono text-sm font-bold text-cyan">[{skill.id}]</span>
+              {!isSimple && (
+                <span className="font-mono text-sm font-bold text-cyan">[{skill.id}]</span>
+              )}
               {skill.track === 'cyber' && (
                 <span className="inline-flex items-center gap-1 text-xs text-emerald">
-                  <ShieldCheck size={14} /> Parcours Cybersécurité
+                  <ShieldCheck size={14} /> {isSimple ? 'Spécialité cybersécurité' : 'Parcours Cybersécurité'}
                 </span>
               )}
               <StatusPill status={skill.status} />
             </div>
 
             <h2 id="skill-title" className="mt-3 font-display text-2xl font-semibold text-ink">
-              {skill.label}
+              {pick(skill.label, skill.simple?.label)}
             </h2>
 
-            <p className="mt-3 leading-relaxed text-muted">{skill.description}</p>
+            <p className="mt-3 leading-relaxed text-muted">{pick(skill.description, skill.simple?.description)}</p>
 
             {/* Jauge de niveau */}
             <div className="mt-5">
               <div className="mb-1.5 flex items-center justify-between text-xs">
                 <span className="font-mono text-faint">{LEVEL_LABEL[skill.level]}</span>
-                <span className="font-mono text-muted">{skill.levelPercent}%</span>
+                {!isSimple && <span className="font-mono text-muted">{skill.levelPercent}%</span>}
               </div>
               <div className="h-1.5 overflow-hidden rounded-full bg-surface-2">
                 <motion.div
@@ -103,8 +107,23 @@ export function SkillDetail({ skill, onClose, onOpenSae }: SkillDetailProps) {
               </div>
             </div>
 
-            {/* Apprentissages critiques */}
-            {skill.apprentissagesCritiques && skill.apprentissagesCritiques.length > 0 && (
+            {/* Vue simplifiée : exemples concrets à la place du référentiel */}
+            {isSimple && skill.simple?.examples && skill.simple.examples.length > 0 && (
+              <div className="mt-6">
+                <p className="text-sm font-medium text-ink">Concrètement, cela veut dire :</p>
+                <ul className="mt-3 space-y-2.5">
+                  {skill.simple.examples.map((ex) => (
+                    <li key={ex} className="flex gap-3 text-sm text-ink">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald" />
+                      {ex}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Apprentissages critiques (vue technique) */}
+            {!isSimple && skill.apprentissagesCritiques && skill.apprentissagesCritiques.length > 0 && (
               <div className="mt-6">
                 <p className="font-mono text-[10px] uppercase tracking-wider text-faint">
                   Apprentissages critiques
@@ -129,7 +148,7 @@ export function SkillDetail({ skill, onClose, onOpenSae }: SkillDetailProps) {
             {proofs.length > 0 && (
               <div className="mt-6 border-t border-line/60 pt-5">
                 <p className="mb-2 font-mono text-[10px] uppercase tracking-wider text-faint">
-                  Preuves — SAÉ rattachées
+                  {isSimple ? 'Projets où je l’ai mis en pratique' : 'Preuves — SAÉ rattachées'}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {proofs.map((sae) => (
@@ -139,8 +158,10 @@ export function SkillDetail({ skill, onClose, onOpenSae }: SkillDetailProps) {
                       onClick={() => onOpenSae(sae.id)}
                       className="rounded-lg border border-line px-3 py-2 text-left text-sm text-ink transition-colors hover:border-cyan/60 hover:text-cyan"
                     >
-                      <span className="font-mono text-xs text-faint">{sae.code ?? 'SAÉ'}</span>
-                      <span className="ml-2">{sae.title}</span>
+                      {!isSimple && (
+                        <span className="mr-2 font-mono text-xs text-faint">{sae.code ?? 'SAÉ'}</span>
+                      )}
+                      <span>{pick(sae.title, sae.simple?.title)}</span>
                     </button>
                   ))}
                 </div>

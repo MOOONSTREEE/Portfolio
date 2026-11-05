@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { skills } from '@/data';
+import { useReadingMode } from '@/lib/readingMode';
 import { Section } from './Section';
 import { SkillCard } from './SkillCard';
 
@@ -8,12 +9,18 @@ interface SkillsProps {
 }
 
 export function Skills({ onOpenSkill }: SkillsProps) {
+  const { isSimple } = useReadingMode();
+
   return (
     <Section
       id="competences"
       eyebrow="~/competences"
       title="Compétences"
-      intro="Compétences du référentiel BUT R&T. Cliquez une carte pour voir les apprentissages critiques et les SAÉ rattachées."
+      intro={
+        isSimple
+          ? 'Les cinq grands savoir-faire que développe ma formation. Cliquez une carte pour des exemples concrets.'
+          : 'Compétences du référentiel BUT R&T. Cliquez une carte pour voir les apprentissages critiques et les SAÉ rattachées.'
+      }
     >
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {skills.map((skill, i) => (

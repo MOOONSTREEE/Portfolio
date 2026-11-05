@@ -2,6 +2,7 @@ import { ArrowUpRight, Star } from 'lucide-react';
 import type { Sae } from '@/data/types';
 import { SkillBadge } from './SkillBadge';
 import { StatusPill } from './StatusPill';
+import { useReadingMode } from '@/lib/readingMode';
 
 interface SaeCardProps {
   sae: Sae;
@@ -9,6 +10,8 @@ interface SaeCardProps {
 }
 
 export function SaeCard({ sae, onOpen }: SaeCardProps) {
+  const { pick, isSimple } = useReadingMode();
+
   return (
     <button
       type="button"
@@ -18,7 +21,7 @@ export function SaeCard({ sae, onOpen }: SaeCardProps) {
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-2">
-          {sae.code && (
+          {!isSimple && sae.code && (
             <span className="font-mono text-xs text-faint">{sae.code}</span>
           )}
           {sae.featured && (
@@ -29,10 +32,10 @@ export function SaeCard({ sae, onOpen }: SaeCardProps) {
       </div>
 
       <h3 className="mt-2 font-display text-lg font-semibold leading-snug text-ink transition-colors group-hover:text-cyan">
-        {sae.title}
+        {pick(sae.title, sae.simple?.title)}
       </h3>
 
-      <p className="mt-2 flex-1 text-sm text-muted">{sae.summary}</p>
+      <p className="mt-2 flex-1 text-sm text-muted">{pick(sae.summary, sae.simple?.summary)}</p>
 
       <div className="mt-4 flex flex-wrap gap-1.5">
         {sae.skills.map((id) => (
@@ -40,7 +43,7 @@ export function SaeCard({ sae, onOpen }: SaeCardProps) {
         ))}
       </div>
 
-      {sae.tools.length > 0 && (
+      {!isSimple && sae.tools.length > 0 && (
         <p className="mt-3 font-mono text-xs text-faint">{sae.tools.join(' · ')}</p>
       )}
 

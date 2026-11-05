@@ -1,5 +1,6 @@
 import { Activity, Dumbbell, Gamepad2 } from 'lucide-react';
 import { profile } from '@/data';
+import { useReadingMode } from '@/lib/readingMode';
 import { Section } from './Section';
 
 const INTEREST_ICONS: Record<string, typeof Dumbbell> = {
@@ -9,10 +10,12 @@ const INTEREST_ICONS: Record<string, typeof Dumbbell> = {
 };
 
 export function About() {
+  const { pick, isSimple } = useReadingMode();
+
   return (
     <Section id="a-propos" eyebrow="~/a-propos" title="À propos">
       <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr]">
-        <p className="text-lg leading-relaxed text-muted">{profile.about}</p>
+        <p className="text-lg leading-relaxed text-muted">{pick(profile.about, profile.simple?.about)}</p>
 
         <div className="space-y-8">
           <div>
@@ -37,7 +40,7 @@ export function About() {
 
           <div>
             <h3 className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-faint">
-              Soft skills
+              {isSimple ? 'Qualités' : 'Soft skills'}
             </h3>
             <ul className="flex flex-wrap gap-2">
               {profile.softSkills.map((skill) => (

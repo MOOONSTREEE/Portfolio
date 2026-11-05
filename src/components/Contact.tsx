@@ -1,8 +1,10 @@
 import { Github, Linkedin, Mail } from 'lucide-react';
 import { profile } from '@/data';
 import { Section } from './Section';
+import { useReadingMode } from '@/lib/readingMode';
 
 export function Contact() {
+  const { isSimple } = useReadingMode();
   const items = [
     { icon: Mail, label: profile.links.email, href: `mailto:${profile.links.email}` },
     { icon: Github, label: 'GitHub — MOOONSTREEE', href: profile.links.github },
@@ -14,7 +16,11 @@ export function Contact() {
       id="contact"
       eyebrow="~/contact"
       title="Contact"
-      intro="Disponible pour échanger autour des réseaux, des systèmes et de la cybersécurité."
+      intro={
+        isSimple
+          ? 'Une question, une opportunité d’emploi ou d’alternance ? Écrivez-moi, je réponds rapidement.'
+          : 'Disponible pour échanger autour des réseaux, des systèmes et de la cybersécurité.'
+      }
     >
       <div className="grid gap-4 sm:grid-cols-3">
         {items.map(({ icon: Icon, label, href }) => (

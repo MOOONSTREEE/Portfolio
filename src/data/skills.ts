@@ -16,6 +16,18 @@ export const skills: Skill[] = [
     levelPercent: 70,
     status: 'en-cours',
     track: 'commun',
+    simple: {
+      label: 'Installer et gérer le réseau d’une organisation',
+      short: 'Réseau',
+      description:
+        'Mettre en place le réseau qui relie les ordinateurs et les bâtiments d’une organisation, ' +
+        'l’organiser et le faire fonctionner au quotidien.',
+      examples: [
+        'Configurer le matériel qui relie les ordinateurs entre eux et à Internet',
+        'Découper un réseau en zones séparées pour limiter les risques',
+        'Repérer une panne et la signaler ou la corriger',
+      ],
+    },
     proofSaeIds: ['sae4-cyber-01', 'sae1-02-reseaux', 'sae1-01-hygiene-cyber'],
     acLevel: "Niveau 1 — Assister l'administrateur du réseau",
     apprentissagesCritiques: [
@@ -38,6 +50,18 @@ export const skills: Skill[] = [
     levelPercent: 52,
     status: 'en-cours',
     track: 'commun',
+    simple: {
+      label: 'Raccorder les bâtiments et les utilisateurs',
+      short: 'Connexions',
+      description:
+        'Choisir et installer ce qui transporte les données : câbles, fibre optique ou Wi-Fi, ' +
+        'pour que chaque bâtiment et chaque utilisateur soit bien connecté.',
+      examples: [
+        'Poser et tester des câbles réseau',
+        'Mesurer la qualité du Wi-Fi dans un bâtiment et proposer des améliorations',
+        'Expliquer une solution technique à une personne non spécialiste',
+      ],
+    },
     proofSaeIds: ['sae1-03-transmission'],
     acLevel: 'Niveau 1 — Découvrir les transmissions et la ToIP',
     apprentissagesCritiques: [
@@ -59,6 +83,18 @@ export const skills: Skill[] = [
     levelPercent: 65,
     status: 'en-cours',
     track: 'commun',
+    simple: {
+      label: 'Créer des outils informatiques',
+      short: 'Programmation',
+      description:
+        'Écrire des programmes et des petits outils qui automatisent des tâches répétitives ' +
+        'et facilitent le travail d’une équipe informatique.',
+      examples: [
+        'Programmer en Python',
+        'Créer et publier un site web',
+        'Analyser des données et les présenter clairement',
+      ],
+    },
     proofSaeIds: ['sae4-cyber-01', 'sae-routage-oignon', 'sae1-04-web', 'sae1-05-donnees'],
     acLevel: "Niveau 1 — S'intégrer dans un service informatique",
     apprentissagesCritiques: [
@@ -80,6 +116,18 @@ export const skills: Skill[] = [
     levelPercent: 70,
     status: 'en-cours',
     track: 'cyber',
+    simple: {
+      label: 'Protéger le système informatique d’une organisation',
+      short: 'Protection',
+      description:
+        'Mettre en place les protections qui empêchent les intrusions : filtrage des connexions, ' +
+        'contrôle de qui accède à quoi, chiffrement des informations sensibles.',
+      examples: [
+        'Installer et régler un pare-feu (le « filtre » entre le réseau et l’extérieur)',
+        'Gérer les comptes et les droits d’accès des utilisateurs',
+        'Protéger les données grâce au chiffrement',
+      ],
+    },
     proofSaeIds: ['sae4-cyber-01'],
     acLevel: 'Parcours Cybersécurité — apprentissages clés (à confirmer)',
     apprentissagesCritiques: [
@@ -101,6 +149,18 @@ export const skills: Skill[] = [
     levelPercent: 58,
     status: 'en-cours',
     track: 'cyber',
+    simple: {
+      label: 'Surveiller et réagir aux cyberattaques',
+      short: 'Surveillance',
+      description:
+        'Garder un œil sur l’activité du système informatique pour repérer une attaque au plus tôt ' +
+        'et savoir comment réagir.',
+      examples: [
+        'Utiliser des outils de surveillance qui alertent en cas d’activité anormale',
+        'S’entraîner à trouver des failles pour mieux les corriger',
+        'Réagir de façon organisée face à un incident de sécurité',
+      ],
+    },
     proofSaeIds: ['sae4-cyber-01', 'sae-routage-oignon'],
     acLevel: 'Parcours Cybersécurité — apprentissages clés (à confirmer)',
     apprentissagesCritiques: [

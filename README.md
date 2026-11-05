@@ -83,6 +83,21 @@ Ajouter un objet dans `src/data/projects.ts`. La section et son entrée de menu 
 
 Ajouter un objet dans `src/data/internships.ts` ou `src/data/education.ts`.
 
+### Vue technique / vue simplifiée
+
+Un sélecteur dans l'en-tête bascule tout le site entre une **vue technique** (vocabulaire du métier,
+codes RT et SAÉ, outils, apprentissages critiques) et une **vue simplifiée** pour les RH et les
+personnes hors informatique (langage courant, exemples concrets, sans codes ni jargon).
+
+- Chaque contenu peut avoir un champ `simple` (profil, formation, compétences, SAÉ, projets,
+  stages). S'il manque, la version technique s'affiche : rien ne casse si on oublie de le remplir.
+- En vue simplifiée, les codes (`RT1`, `SAÉ1.01`), les listes d'outils, les pourcentages, les
+  filtres et les apprentissages critiques sont masqués ; les compétences affichent des exemples
+  concrets (`simple.examples`).
+- Le choix du visiteur est mémorisé, et le lien **`…/Portfolio/?vue=simple`** ouvre directement la
+  vue simplifiée : c'est celui à envoyer à un·e RH.
+- Logique : `src/lib/readingMode.tsx` (`useReadingMode().pick(tech, simple)`).
+
 ### Modifier une compétence
 
 Éditer `src/data/skills.ts` : `level`, `levelPercent` (jauge), `status`, et `proofSaeIds`

@@ -5,6 +5,7 @@ import type { SkillId } from '@/data/types';
 import { cn } from '@/lib/ui';
 import { Section } from './Section';
 import { SaeCard } from './SaeCard';
+import { useReadingMode } from '@/lib/readingMode';
 
 interface SaesProps {
   onOpen: (id: string) => void;
@@ -16,18 +17,25 @@ export function Saes({ onOpen }: SaesProps) {
   const all = useMemo(() => sortedSaes(), []);
   const filters = useMemo(() => usedSkillIds(), []); // généré, jamais codé en dur
   const [active, setActive] = useState<Filter>('all');
+  const { isSimple } = useReadingMode();
 
-  const list = active === 'all' ? all : all.filter((s) => s.skills.includes(active));
+  // En vue simplifiée, les filtres (codes RT) sont masqués : on affiche tout.
+  const current = isSimple ? 'all' : active;
+  const list = current === 'all' ? all : all.filter((s) => s.skills.includes(current));
 
   return (
     <Section
       id="saes"
-      eyebrow="~/saes"
-      title="SAÉ"
-      intro="Situations d'apprentissage et d'évaluation. Cliquez une carte pour le détail."
+      eyebrow={isSimple ? '~/projets-etudes' : '~/saes'}
+      title={isSimple ? 'Projets d’études' : 'SAÉ'}
+      intro={
+        isSimple
+          ? 'Les projets concrets réalisés pendant ma formation, seul ou en équipe. Cliquez une carte pour le détail.'
+          : "Situations d'apprentissage et d'évaluation. Cliquez une carte pour le détail."
+      }
     >
       {/* Filtre par compétence (généré depuis les SAÉ existantes) */}
-      {filters.length > 0 && (
+      {!isSimple && filters.length > 0 && (
         <div className="mb-8 flex flex-wrap gap-2">
           <FilterChip label="Tout" active={active === 'all'} onClick={() => setActive('all')} />
           {filters.map((id) => (

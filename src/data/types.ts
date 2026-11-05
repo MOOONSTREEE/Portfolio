@@ -20,6 +20,9 @@ export interface ExternalLink {
   kind?: 'repo' | 'demo' | 'video' | 'report' | 'poster' | 'other';
 }
 
+// Champs `simple` : version « vue simplifiée » (RH, recruteurs, non-informaticiens).
+// Chaque sous-champ est optionnel : s'il manque, la version technique s'affiche.
+
 export interface Profile {
   fullName: string;
   initials: string;
@@ -31,6 +34,7 @@ export interface Profile {
   links: { github: string; linkedin: string; email: string };
   cvUrl: string; // ex : `${import.meta.env.BASE_URL}cv.pdf`
   cvUrlEn?: string; // version anglaise du CV (bouton masqué si absent)
+  simple?: { title?: string; tagline?: string; about?: string };
 }
 
 export interface EducationItem {
@@ -41,6 +45,7 @@ export interface EducationItem {
   track?: string;
   current?: boolean;
   description?: string;
+  simple?: { title?: string; track?: string; description?: string };
 }
 
 export interface Skill {
@@ -59,6 +64,8 @@ export interface Skill {
   acLevel?: string;
   /** Apprentissages critiques (référentiel BUT R&T). `code` optionnel. */
   apprentissagesCritiques?: { code?: string; label: string }[];
+  /** Vue simplifiée : intitulé, libellé court, explication et exemples concrets. */
+  simple?: { label?: string; short?: string; description?: string; examples?: string[] };
 }
 
 export interface Sae {
@@ -75,6 +82,8 @@ export interface Sae {
   featured?: boolean; // mise en avant (épinglée en tête)
   links?: ExternalLink[];
   order?: number; // tri manuel optionnel (plus petit = plus haut)
+  /** Vue simplifiée : titre, résumé, texte long et points clés sans jargon. */
+  simple?: { title?: string; summary?: string; description?: string; highlights?: string[] };
 }
 
 export interface Project {
@@ -88,6 +97,7 @@ export interface Project {
   featured?: boolean;
   hidden?: boolean; // masque sans supprimer
   links?: ExternalLink[];
+  simple?: { title?: string; summary?: string };
 }
 
 export interface Internship {
@@ -99,4 +109,5 @@ export interface Internship {
   duration?: string;
   missions: string[];
   links?: ExternalLink[];
+  simple?: { role?: string; department?: string; missions?: string[] };
 }
