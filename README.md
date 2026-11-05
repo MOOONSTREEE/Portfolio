@@ -94,7 +94,9 @@ Ajouter un objet dans `src/data/internships.ts` ou `src/data/education.ts`.
 
 - **Compétences RT1, RT2, RT3, RT5** : niveaux et preuves exacts (depuis Mahara).
 - **RT4 / RT5** : intitulés exacts du parcours Cybersécurité (syllabus IUT Colmar).
-- **Stage m2A** : dates exactes + 2 à 4 missions + poster éventuel.
+- **Alternance m2A** (3ᵉ année) : service d'accueil + 2 à 4 missions concrètes.
+- **Stage m2A** (2ᵉ année) : dates exactes + 2 à 4 missions + poster éventuel.
+- **SAÉ de 3ᵉ année** : à ajouter dans `saes.ts` au fil de l'année.
 - **Stage 3ᵉ** : nom de l'entreprise de drones aquatiques + année.
 - **Baccalauréat** : année exacte.
 - **CV** : remplacer `public/cv.pdf` (placeholder) par le vrai CV.

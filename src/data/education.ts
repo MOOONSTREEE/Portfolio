@@ -7,11 +7,11 @@ export const education: EducationItem[] = [
     title: 'BUT Réseaux & Télécommunications',
     institution: 'IUT de Colmar — Université de Haute-Alsace',
     period: '2023 – en cours',
-    track: 'Parcours Cybersécurité (2ᵉ année)',
+    track: 'Parcours Cybersécurité — 3ᵉ année en alternance',
     current: true,
     description:
       "Administration des réseaux, sécurisation des systèmes d'information et déploiement " +
-      "d'infrastructures. Objectif : poursuite en BAC+3 en apprentissage à partir de septembre 2026.",
+      "d'infrastructures. 3ᵉ année suivie en alternance (contrat d'apprentissage) chez m2A depuis septembre 2026.",
   },
   {
     id: 'bac',

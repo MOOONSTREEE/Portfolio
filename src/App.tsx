@@ -38,7 +38,7 @@ export default function App() {
       { id: 'saes', label: 'SAÉ' },
     ];
     if (visibleProjects().length > 0) items.push({ id: 'projets', label: 'Projets' });
-    items.push({ id: 'stages', label: 'Stages' });
+    items.push({ id: 'stages', label: 'Alternance' });
     items.push({ id: 'contact', label: 'Contact' });
     return items;
   }, []);

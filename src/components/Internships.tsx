@@ -5,7 +5,7 @@ import { Section } from './Section';
 
 export function Internships() {
   return (
-    <Section id="stages" eyebrow="~/stages" title="Stages & expérience">
+    <Section id="stages" eyebrow="~/experience" title="Alternance & stages">
       <div className="grid gap-5 md:grid-cols-2">
         {internships.map((item, i) => (
           <motion.article

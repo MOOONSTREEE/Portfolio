@@ -39,7 +39,7 @@ export const saes: Sae[] = [
     ],
     skills: ['RT4', 'RT1', 'RT3', 'RT5'],
     tools: ['Proxmox', 'nftables', 'LDAP', 'PKI', 'HAProxy', 'Linux'],
-    status: 'en-cours',
+    status: 'acquis',
     period: '2ᵉ année',
     featured: true,
     order: 0,
